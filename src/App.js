@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import SupplierView from './SupplierView';
-import ConsumerView from './ConsumerView';
+import React, { useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import SupplierView from "./SupplierView";
+import ConsumerView from "./ConsumerView";
 
 const emissionsData = [
   { year: 2020, baseline: 100, target: 100, improved: 100 },
@@ -12,13 +21,28 @@ const emissionsData = [
 ];
 
 const dppData = [
-  { id: 'SKU001', product: "Levi's 501", batch: 'B001', rawMaterial: 'Cotton, Polyester' },
-  { id: 'SKU002', product: "Levi's 502", batch: 'B002', rawMaterial: 'Organic Cotton' },
-  { id: 'SKU003', product: "Levi's 512", batch: 'B003', rawMaterial: 'Recycled Denim' },
+  {
+    id: "SKU001",
+    product: "Levi's 501",
+    batch: "B001",
+    rawMaterial: "Cotton, Polyester",
+  },
+  {
+    id: "SKU002",
+    product: "Levi's 502",
+    batch: "B002",
+    rawMaterial: "Organic Cotton",
+  },
+  {
+    id: "SKU003",
+    product: "Levi's 512",
+    batch: "B003",
+    rawMaterial: "Recycled Denim",
+  },
 ];
 
 const App = () => {
-  const [activeTab, setActiveTab] = useState('impactOverview');
+  const [activeTab, setActiveTab] = useState("impactOverview");
   const [lumenBalance, setLumenBalance] = useState(1000);
   const [lumenPrice, setLumenPrice] = useState(30);
 
@@ -27,9 +51,24 @@ const App = () => {
       <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-900">LUMEN</h1>
         <div className="flex space-x-4">
-          <button className="p-2 rounded-full hover:bg-gray-200" title="Settings">⚙️</button>
-          <button className="p-2 rounded-full hover:bg-gray-200" title="My Account">👤</button>
-          <button className="p-2 rounded-full hover:bg-gray-200" title="Sign Out">🚪</button>
+          <button
+            className="p-2 rounded-full hover:bg-gray-200"
+            title="Settings"
+          >
+            ⚙️
+          </button>
+          <button
+            className="p-2 rounded-full hover:bg-gray-200"
+            title="My Account"
+          >
+            👤
+          </button>
+          <button
+            className="p-2 rounded-full hover:bg-gray-200"
+            title="Sign Out"
+          >
+            🚪
+          </button>
         </div>
       </div>
     </header>
@@ -38,13 +77,23 @@ const App = () => {
   const renderSidebar = () => (
     <nav className="w-64 bg-white shadow-sm">
       <div className="p-4">
-        {['impactOverview', 'digitalProductPassports', 'tradeCarbon', 'suppliers', 'consumer'].map((tab) => (
-          <button 
+        {[
+          "impactOverview",
+          "digitalProductPassports",
+          "tradeCarbon",
+          "suppliers",
+          "consumer",
+        ].map((tab) => (
+          <button
             key={tab}
-            className={`w-full text-left p-2 mb-2 rounded ${activeTab === tab ? 'bg-teal-200' : 'bg-gray-200'}`}
+            className={`w-full text-left p-2 mb-2 rounded ${activeTab === tab ? "bg-teal-200" : "bg-gray-200"}`}
             onClick={() => setActiveTab(tab)}
           >
-            {tab.charAt(0).toUpperCase() + tab.slice(1).replace(/([A-Z])/g, ' $1').trim()}
+            {tab.charAt(0).toUpperCase() +
+              tab
+                .slice(1)
+                .replace(/([A-Z])/g, " $1")
+                .trim()}
           </button>
         ))}
       </div>
@@ -58,14 +107,14 @@ const App = () => {
     const governanceScore = 77;
 
     const ratings = [
-      { name: 'Company', value: 70, color: 'bg-red-500' },
-      { name: 'Target', value: 60, color: 'bg-yellow-500' },
-      { name: 'Benchmark', value: 50, color: 'bg-yellow-300' },
-      { name: 'Average', value: 40, color: 'bg-green-300' },
-      { name: 'Best', value: 20, color: 'bg-green-500' }
+      { name: "Company", value: 70, color: "bg-red-500" },
+      { name: "Target", value: 60, color: "bg-yellow-500" },
+      { name: "Benchmark", value: 50, color: "bg-yellow-300" },
+      { name: "Average", value: 40, color: "bg-green-300" },
+      { name: "Best", value: 20, color: "bg-green-500" },
     ];
 
-    const maxRating = Math.max(...ratings.map(r => r.value));
+    const maxRating = Math.max(...ratings.map((r) => r.value));
 
     return (
       <div className="p-4 bg-white rounded-lg shadow">
@@ -81,9 +130,9 @@ const App = () => {
         {/* E, S, G Scores */}
         <div className="grid grid-cols-3 gap-4 mb-6">
           {[
-            { label: 'E', score: environmentalScore, color: 'bg-teal-200' },
-            { label: 'S', score: socialScore, color: 'bg-blue-200' },
-            { label: 'G', score: governanceScore, color: 'bg-purple-200' }
+            { label: "E", score: environmentalScore, color: "bg-teal-200" },
+            { label: "S", score: socialScore, color: "bg-blue-200" },
+            { label: "G", score: governanceScore, color: "bg-purple-200" },
           ].map(({ label, score, color }) => (
             <div key={label} className={`${color} p-4 rounded text-center`}>
               <div className="text-xl font-bold">{label}</div>
@@ -94,22 +143,24 @@ const App = () => {
 
         {/* Environmental Benchmark */}
         <div className="bg-gray-100 p-4 rounded-lg">
-          <h3 className="text-lg font-semibold mb-2">Environmental Benchmark</h3>
+          <h3 className="text-lg font-semibold mb-2">
+            Environmental Benchmark
+          </h3>
           <div className="relative h-40">
             {ratings.map((rating, index) => (
-              <div 
+              <div
                 key={rating.name}
                 className="absolute bottom-0 flex flex-col items-center"
                 style={{
                   left: `${(index / (ratings.length - 1)) * 100}%`,
-                  width: '18%',
-                  height: `${(rating.value / maxRating) * 100}%`
+                  width: "18%",
+                  height: `${(rating.value / maxRating) * 100}%`,
                 }}
               >
                 <div className="text-xs mb-1">{rating.name}</div>
-                <div 
+                <div
                   className={`w-full ${rating.color} rounded-t`}
-                  style={{ height: '100%' }}
+                  style={{ height: "100%" }}
                 ></div>
                 <div className="text-xs mt-1">{rating.value}</div>
               </div>
@@ -154,8 +205,24 @@ const App = () => {
               <div className="text-2xl font-bold">7/10</div>
             </div>
             <svg className="w-full h-full" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="45" fill="none" stroke="#e0e0e0" strokeWidth="10" />
-              <circle cx="50" cy="50" r="45" fill="none" stroke="#4fd1c5" strokeWidth="10" strokeDasharray="283" strokeDashoffset="85" />
+              <circle
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="#e0e0e0"
+                strokeWidth="10"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="#4fd1c5"
+                strokeWidth="10"
+                strokeDasharray="283"
+                strokeDashoffset="85"
+              />
               <circle cx="50" cy="50" r="38" fill="#fff" />
             </svg>
           </div>
@@ -194,13 +261,13 @@ const App = () => {
         <p>Current $LUMEN Balance: {lumenBalance}</p>
         <p>Current $LUMEN Price: ${lumenPrice}</p>
         <div className="mt-4">
-          <button 
+          <button
             className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
             onClick={() => setLumenBalance(lumenBalance + 100)}
           >
             Buy 100 $LUMEN
           </button>
-          <button 
+          <button
             className="bg-red-500 text-white px-4 py-2 rounded"
             onClick={() => setLumenBalance(Math.max(0, lumenBalance - 100))}
           >
@@ -211,25 +278,21 @@ const App = () => {
     </div>
   );
 
-  const renderSuppliers = () => (
-    <SupplierView />
-  );
+  const renderSuppliers = () => <SupplierView />;
 
-  const renderConsumer = () => (
-    <ConsumerView />
-  );
+  const renderConsumer = () => <ConsumerView />;
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'impactOverview':
+      case "impactOverview":
         return renderImpactOverview();
-      case 'digitalProductPassports':
+      case "digitalProductPassports":
         return renderDigitalProductPassports();
-      case 'tradeCarbon':
+      case "tradeCarbon":
         return renderTradeCarbon();
-      case 'suppliers':
+      case "suppliers":
         return renderSuppliers();
-      case 'consumer':
+      case "consumer":
         return renderConsumer();
       default:
         return null;
@@ -241,9 +304,7 @@ const App = () => {
       {renderTopBar()}
       <div className="flex flex-1 overflow-hidden">
         {renderSidebar()}
-        <main className="flex-1 overflow-auto p-4">
-          {renderContent()}
-        </main>
+        <main className="flex-1 overflow-auto p-4">{renderContent()}</main>
       </div>
     </div>
   );
